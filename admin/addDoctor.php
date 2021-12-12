@@ -89,7 +89,7 @@ if (isset($_GET['sign']) and $_GET['sign'] == "out") {
             </div>
             <div class="col-md-6">
                 <label for="image" class="form-label">Choose Image</label>
-                <input type="file" class="form-control" name="pic" id="image" placeholder="1234 Main St">
+                <input type="file" class="form-control" name="pic" id="image">
             </div>
             <div class="col-md-4">
                 <label for="department" class="form-label">Department</label>
@@ -135,7 +135,7 @@ if (isset($_POST['submit'])) {
     $date = date('D:M:Y');
     $time = date('h:i:s');
     $image_name = md5($date . $time . $dr_id);
-    $image = $image_name . "." . $ext;
+    $image = $image_name . "." .$ext;
 
     $query = "insert into doctor values('$dr_id','$name','$email','$mobile','$address','$department','$image')";
     if (mysqli_query($con, $query)) {

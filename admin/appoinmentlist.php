@@ -70,7 +70,7 @@ if (isset($_GET['sign']) and $_GET['sign'] == "out") {
             <h1> Appoinment LIST</h1>
         </div>
         <br />
-        <form action="appoinmentlist.php" method="post">
+        <form action="appoinmentlist.php" method="post" enctype="multipart/form-data">
             <input type="submit" value="Show All Appoinment" name="show">
         </form>
         <?php
@@ -79,15 +79,15 @@ if (isset($_GET['sign']) and $_GET['sign'] == "out") {
 
             $sql = "select ap_id,name,email,dob,department,drName,mobile from appoinments";
             $r = mysqli_query($con, $sql);
-            echo "<table id='info'>";
+            echo "<table id='info' class='table table-dark'>";
             echo "<tr>
-                        <th>Appoinment ID</th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Birth date</th>
-                        <th>Department</th>
-                        <th>Dr. Name</th>
-                        <th>Mobile</th>
+                        <th scope='col'>Appoinment ID</th>
+                        <th scope='col'>Name</th>
+                        <th scope='col'>Email</th>
+                        <th scope='col'>Birth date</th>
+                        <th scope='col'>Department</th>
+                        <th scope='col'>Dr. Name</th>
+                        <th scope='col'>Mobile</th>
                     </tr>
                ";
             while ($row = mysqli_fetch_array($r)) {
@@ -99,9 +99,9 @@ if (isset($_GET['sign']) and $_GET['sign'] == "out") {
                 $drName = $row['drName'];
                 $mobile = $row['mobile'];
 
-                echo "<tr>
+                echo "<tbody><tr>
                         <td>$ap_id</td><td>$name</td><td>$email</td><td>$dob</td><td>$department</td><td>$drName</td><td>$mobile</td>
-                     </tr>";
+                     </tr></tbody>";
             }
             echo "</table>";
         }

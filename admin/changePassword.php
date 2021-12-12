@@ -77,7 +77,7 @@ if (isset($_GET['sign']) and $_GET['sign'] == "out") {
             </div>
             <div class="col-md-8">
                 <label for="cpass" class="form-label">Confirm Password</label>
-                <input type="text" class="form-control" name="npass" id="npass">
+                <input type="text" class="form-control" name="cpass" id="cpass">
             </div>
             <div class="col-12">
                 <button type="submit" name="submit" id="submit" class="btn btn-primary">Submit</button>

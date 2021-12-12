@@ -83,7 +83,7 @@
               <a class="nav-link" href="dashboard.php">Dashboard</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="blog.html">News</a>
+              <a class="nav-link" href="profile.php">Profile</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="contact.html">Contact</a>

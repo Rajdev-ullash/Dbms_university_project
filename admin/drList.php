@@ -22,6 +22,8 @@ if (isset($_GET['sign']) and $_GET['sign'] == "out") {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+    <link rel="stylesheet" href="drList.css">
     <title>add doctor</title>
 </head>
 
@@ -51,15 +53,6 @@ if (isset($_GET['sign']) and $_GET['sign'] == "out") {
                     <li class="nav-item">
                         <a class="nav-link" href="changePassword.php">Change Password</a>
                     </li>
-                    <!-- <li class="nav-item">
-              <a class="nav-link" href="blog.html">News</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="contact.html">Contact</a>
-            </li>
-            <li class="nav-item">
-              <a class="btn btn-primary ml-lg-3" href="signin.php">Login / Register</a>
-            </li> -->
                     <li class="nav-item ">
                         <a class="btn btn-primary ml-lg-3" href="?sign=out">Logout</a>
                     </li>
@@ -74,36 +67,48 @@ if (isset($_GET['sign']) and $_GET['sign'] == "out") {
         <form action="drList.php" method="post">
             <input type="submit" value="Show All Doctor" name="show">
         </form>
-        <?php
-        include('../html/connection.php');
-        if (isset($_POST['show'])) {
-            $sql = "select dr_id,name,email,mobile,address,department from doctor";
-            $r = mysqli_query($con, $sql);
-            echo "<table id='doctor'>";
-            echo "<tr>
-                        <th>Doctor ID</th>
-                        <th>Doctor Name</th>
-                        <th>Doctor Email</th>
-                        <th>Doctor mobile</th>
-                        <th>Doctor Address</th>
-                        <th>Doctor Department</th>
-                    </tr>
-               ";
-            while ($row = mysqli_fetch_array($r)) {
-                $dr_id = $row['dr_id'];
-                $name = $row['name'];
-                $email = $row['email'];
-                $mobile = $row['mobile'];
-                $address = $row['address'];
-                $department = $row['department'];
 
-                echo "<tr>
-                        <td>$dr_id</td><td>$name</td><td>$email</td><td>$mobile</td><td>$address</td><td>$department</td>
-                     </tr>";
-            }
-            echo "</table>";
-        }
-        ?>
+        <div class="container">
+            <div class="row text-center">
+
+                <?php
+                include('../html/connection.php');
+                if (isset($_POST['show'])) {
+                    $sql = "select dr_id,name,email,mobile,address,department,image from doctor";
+                    $r = mysqli_query($con, $sql);
+                    echo "<table id='doctor' class='table table-dark'>";
+                    echo "<tr>
+                                <th scope='col'>Doctor ID</th>
+                                <th scope='col'>Doctor Name</th>
+                                <th scope='col'>Doctor Email</th>
+                                <th scope='col'>Doctor mobile</th>
+                                <th scope='col'>Doctor Address</th>
+                                <th scope='col'>Doctor Department</th>
+                                <th scope='col'>Doctor Image</th>
+                            </tr>
+                       ";
+                    while ($row = mysqli_fetch_array($r)) {
+                        $dr_id = $row['dr_id'];
+                        $name = $row['name'];
+                        $email = $row['email'];
+                        $mobile = $row['mobile'];
+                        $address = $row['address'];
+                        $department = $row['department'];
+                        $image = $row['image'];
+
+
+                        echo "<tbody><tr>
+                                <td>$dr_id</td><td>$name</td><td>$email</td><td>$mobile</td><td>$address</td><td>$department</td><td><img src='../html/uploadimage/'.$image.'.jpg' height='50px' width='50px' alt=$image></td>
+
+                             </tr><?tbody>";
+                    }
+                    echo "</table>";
+
+
+                }
+            ?>
+            </div>
+        </div>
     </div>
     <!-- <div class="d-flex justify-content-end align-items-end mt-5 me-3">
         <button class="btn btn-primary">ALL DOCTOR LIST</button>

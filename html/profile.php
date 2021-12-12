@@ -12,6 +12,7 @@ if (isset($_GET['sign']) and $_GET['sign'] == "out") {
 }
 ?>
 
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -108,42 +109,38 @@ if (isset($_GET['sign']) and $_GET['sign'] == "out") {
 
     <div class="row m-3">
         <div class="text-center bg-primary text-white">
-            <h1> Appoinment LIST</h1>
+            <h1> Profile</h1>
         </div>
         <br />
-        <form action="dashboard.php" method="post" enctype="multipart/form-data">
-            <input type="submit" value="Show All Appoinment" name="show" id="show">
+        <form action="profile.php" method="post" enctype="multipart/form-data">
+            <input type="submit" value="Show your Profile" name="show" id="show">
         </form>
         <?php
         include('./connection.php');
         if (isset($_POST['show'])) {
             $u_id = $_SESSION['user_id'];
-            $sql = "select ap_id,u_id,name,email,dob,department,drName,mobile from appoinments where u_id = '$u_id'";
+            $sql = "select user_id,name,email,mobile,dob,image from sign where user_id = '$u_id'";
             $r = mysqli_query($con, $sql) or die( mysqli_error($con));
             echo "<table id='info' class='table table-dark'>";
             echo "<tr>
-                        <th scope='col'>Appoinment ID</th>
                         <th scope='col'>USER ID</th>
                         <th scope='col'>Name</th>
                         <th scope='col'>Email</th>
-                        <th scope='col'>Birth date</th>
-                        <th scope='col'>Department</th>
-                        <th scope='col'>Dr. Name</th>
                         <th scope='col'>Mobile</th>
+                        <th scope='col'>Birth date</th>
+                        <th scope='col'>image</th>
                     </tr>
                ";
-            while ($row = mysqli_fetch_array($r)) {
-                $ap_id = $row['ap_id'];
-                $u_id = $row['u_id'];
+            while ($row = mysqli_fetch_assoc($r)) {
+                $u_id = $row['user_id'];
                 $name = $row['name'];
                 $email = $row['email'];
-                $dob = $row['dob'];
-                $department = $row['department'];
-                $drName = $row['drName'];
                 $mobile = $row['mobile'];
+                $dob = $row['dob'];
+                $image = $row['image'];
 
                 echo "<tbody><tr>
-                        <td>$ap_id</td><td>$u_id</td><td>$name</td><td>$email</td><td>$dob</td><td>$department</td><td>$drName</td><td>$mobile</td>
+                        <td>$u_id</td><td>$name</td><td>$email</td><td>$mobile</td><td>$dob</td><td><img src='./uploadimage/$image.png' height='50px' width='50px'></td>
                      </tr></tbody>";
             }
             echo "</table>";
@@ -217,4 +214,3 @@ if (isset($_GET['sign']) and $_GET['sign'] == "out") {
 </body>
 
 </html>
-
