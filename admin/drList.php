@@ -22,9 +22,10 @@ if (isset($_GET['sign']) and $_GET['sign'] == "out") {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="drList.css">
-    <title>add doctor</title>
+    <title>Doctor List</title>
 </head>
 
 <body>
@@ -48,7 +49,7 @@ if (isset($_GET['sign']) and $_GET['sign'] == "out") {
                         <a class="nav-link" href="drList.php">Doctors List</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="doctors.html">Apoinment list</a>
+                        <a class="nav-link" href="appoinmentlist.php">Apoinment list</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="changePassword.php">Change Password</a>
@@ -61,7 +62,7 @@ if (isset($_GET['sign']) and $_GET['sign'] == "out") {
         </div> <!-- .container -->
     </nav>
     <div class="row m-3">
-        <div class="text-center bg-primary text-white">
+        <div class="text-center bg-dark text-white">
             <h1> DOCTOR LIST</h1>
         </div>
         <form action="drList.php" method="post">
@@ -69,24 +70,15 @@ if (isset($_GET['sign']) and $_GET['sign'] == "out") {
         </form>
 
         <div class="container">
-            <div class="row text-center">
+            <div class="row text-center people">
 
                 <?php
                 include('../html/connection.php');
                 if (isset($_POST['show'])) {
                     $sql = "select dr_id,name,email,mobile,address,department,image from doctor";
                     $r = mysqli_query($con, $sql);
-                    echo "<table id='doctor' class='table table-dark'>";
-                    echo "<tr>
-                                <th scope='col'>Doctor ID</th>
-                                <th scope='col'>Doctor Name</th>
-                                <th scope='col'>Doctor Email</th>
-                                <th scope='col'>Doctor mobile</th>
-                                <th scope='col'>Doctor Address</th>
-                                <th scope='col'>Doctor Department</th>
-                                <th scope='col'>Doctor Image</th>
-                            </tr>
-                       ";
+
+
                     while ($row = mysqli_fetch_array($r)) {
                         $dr_id = $row['dr_id'];
                         $name = $row['name'];
@@ -97,16 +89,28 @@ if (isset($_GET['sign']) and $_GET['sign'] == "out") {
                         $image = $row['image'];
 
 
-                        echo "<tbody><tr>
-                                <td>$dr_id</td><td>$name</td><td>$email</td><td>$mobile</td><td>$address</td><td>$department</td><td><img src='../html/uploadimage/'.$image.'.jpg' height='50px' width='50px' alt=$image></td>
+                        // echo "<tbody><tr>
+                        //         <td>$dr_id</td><td>$name</td><td>$email</td><td>$mobile</td><td>$address</td><td>$department</td><td><img src='../html/uploadimage/$image' height='50px' width='50px' alt=$image></td><td><a href='remove.php?id=$dr_id'><button type='button'>Remove</button></a></td>
 
-                             </tr><?tbody>";
+                        //      </tr><?tbody>";
+                        echo "
+                        <div class='col-md-6 col-lg-3 item'>
+                    <div class='box'><img class='rounded-circle' src='../html/uploadimage/$image'>
+                        <h3 class='name'>$name</h3>
+                        <p class='title'>Dr.ID: $dr_id</p>
+                        <p class='text-center'>Email: $email</p>
+                        <p class='text-center'>Phone: $mobile</p>
+                        <p class='text-center'>Address: $address</p>
+                        <p class='text-center'>Department: $department</p>
+                        <div class='social'><a href='#'><i class='fa fa-facebook-official'></i></a><a href='#'<i class='fa fa-twitter'></i></a><a href='#'><i class='fa fa-instagram'></i></a></div>
+                        <div class='d-flex justify-content-center align-items-center mt-3'><a href='remove.php?id=$dr_id'><button type='button' class='btn btn-danger'>Remove</button></a></div>
+                    </div>
+                </div>
+                        ";
                     }
                     echo "</table>";
-
-
                 }
-            ?>
+                ?>
             </div>
         </div>
     </div>
@@ -114,8 +118,8 @@ if (isset($_GET['sign']) and $_GET['sign'] == "out") {
         <button class="btn btn-primary">ALL DOCTOR LIST</button>
     </div> -->
     <hr />
-    <div class="text-center bg-primary text-white">
-        <h1>Update Doctor Info</h1>
+    <div class="text-center">
+        <h3>Update Doctor Info</h3>
     </div>
     <div class="container d-flex justify-content-center align-items-center mt-5">
         <form action="drList.php" method="post" enctype="multipart/form-data" class="row g-3">

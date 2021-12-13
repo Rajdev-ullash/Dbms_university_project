@@ -35,6 +35,7 @@ if (isset($_GET['sign']) and $_GET['sign'] == "out") {
     <link rel="stylesheet" href="../assets/vendor/animate/animate.css">
 
     <link rel="stylesheet" href="../assets/css/theme.css">
+    <link rel="stylesheet" href="../admin/drList.css">
 </head>
 
 <body>
@@ -108,10 +109,6 @@ if (isset($_GET['sign']) and $_GET['sign'] == "out") {
     </header>
 
     <div class="row m-3">
-        <div class="text-center bg-primary text-white">
-            <h1> Profile</h1>
-        </div>
-        <br />
         <form action="profile.php" method="post" enctype="multipart/form-data">
             <input type="submit" value="Show your Profile" name="show" id="show">
         </form>
@@ -121,29 +118,28 @@ if (isset($_GET['sign']) and $_GET['sign'] == "out") {
             $u_id = $_SESSION['user_id'];
             $sql = "select user_id,name,email,mobile,dob,image from sign where user_id = '$u_id'";
             $r = mysqli_query($con, $sql) or die( mysqli_error($con));
-            echo "<table id='info' class='table table-dark'>";
-            echo "<tr>
-                        <th scope='col'>USER ID</th>
-                        <th scope='col'>Name</th>
-                        <th scope='col'>Email</th>
-                        <th scope='col'>Mobile</th>
-                        <th scope='col'>Birth date</th>
-                        <th scope='col'>image</th>
-                    </tr>
-               ";
-            while ($row = mysqli_fetch_assoc($r)) {
-                $u_id = $row['user_id'];
+            while ($row = mysqli_fetch_array($r)) {
+                $user_id = $row['user_id'];
                 $name = $row['name'];
                 $email = $row['email'];
                 $mobile = $row['mobile'];
                 $dob = $row['dob'];
                 $image = $row['image'];
-
-                echo "<tbody><tr>
-                        <td>$u_id</td><td>$name</td><td>$email</td><td>$mobile</td><td>$dob</td><td><img src='./uploadimage/$image.png' height='50px' width='50px'></td>
-                     </tr></tbody>";
+                echo "
+                <div class='col-md-6 col-lg-3 item'>
+            <div class='box'><img class='rounded-circle' src='../html/uploadimage/$image'>
+                <h3 class='name'>$name</h3>
+                <p class='title'>User.ID: $user_id</p>
+                <p class='text-center'>Email: $email</p>
+                <p class='text-center'>Phone: $mobile</p>
+                <p class='text-center'>Date of Birth: $dob</p>
+               
+                <div class='social'><a href='#'><i class='fa fa-facebook-official'></i></a><a href='#'<i class='fa fa-twitter'></i></a><a href='#'><i class='fa fa-instagram'></i></a></div>
+                
+            </div>
+        </div>
+                ";
             }
-            echo "</table>";
         }
         ?>
     </div>

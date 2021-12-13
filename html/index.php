@@ -68,13 +68,13 @@
         <div class="collapse navbar-collapse" id="navbarSupport">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="index.html">Home</a>
+              <a class="nav-link" href="index.php">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="about.html">About Us</a>
+              <a class="nav-link" href="about.php">About Us</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="doctors.html">Doctors</a>
+              <a class="nav-link" href="doctors.php">Doctors</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="appoinment.php">Make an appoinment</a>
@@ -92,11 +92,11 @@
               <a class="btn btn-primary ml-lg-3" href="signin.php">Login / Register</a>
             </li>
             <li class="nav-item">
-              <a class="btn btn-primary ml-lg-3" href="">Logout</a>
+              <a class="btn btn-primary ml-lg-3" href="?sign=out">Logout</a>
             </li>
           </ul>
-        </div> <!-- .navbar-collapse -->
-      </div> <!-- .container -->
+        </div>
+      </div>
     </nav>
   </header>
 
@@ -158,8 +158,8 @@
           </div>
         </div>
       </div>
-    </div> <!-- .bg-light -->
-  </div> <!-- .bg-light -->
+    </div>
+  </div> 
 
   <div class="page-section">
     <div class="container">
@@ -347,7 +347,7 @@
         </div>
       </div>
     </div>
-  </div> <!-- .banner-home -->
+  </div> 
 
   <footer class="page-footer">
     <div class="container">

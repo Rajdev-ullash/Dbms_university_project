@@ -85,9 +85,12 @@
             <li class="nav-item">
               <a class="btn btn-primary ml-lg-3" href="#">Login / Register</a>
             </li>
+            <li class="nav-item">
+              <a class="btn btn-primary ml-lg-3" href="?sign=out">LogOut</a>
+            </li>
           </ul>
-        </div> <!-- .navbar-collapse -->
-      </div> <!-- .container -->
+        </div>
+      </div>
     </nav>
   </header>
 

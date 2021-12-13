@@ -43,21 +43,6 @@ if (isset($_GET['sign']) and $_GET['sign'] == "out") {
                     <li class="nav-item">
                         <a class="nav-link" href="drList.php">Doctors List</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="doctors.html">Apoinment list</a>
-                    </li>
-                    <!-- <li class="nav-item">
-                        <a class="nav-link" href="changePassword.php">Change Password</a>
-                    </li> -->
-                    <!-- <li class="nav-item">
-              <a class="nav-link" href="blog.html">News</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="contact.html">Contact</a>
-            </li>
-            <li class="nav-item">
-              <a class="btn btn-primary ml-lg-3" href="signin.php">Login / Register</a>
-            </li> -->
                     <li class="nav-item ">
                         <a class="btn btn-primary ml-lg-3" href="?sign=out">Logout</a>
                     </li>
@@ -66,7 +51,7 @@ if (isset($_GET['sign']) and $_GET['sign'] == "out") {
         </div> <!-- .container -->
     </nav>
     <div class="row m-3">
-        <div class="text-center bg-primary text-white">
+        <div class="text-center bg-dark text-white">
             <h1> Appoinment LIST</h1>
         </div>
         <br />
